@@ -38,9 +38,8 @@ async function getCareerPaths(file) {
     Give top 5 options, along with a percentage of how confident you are in each, and nothing else.
     The data should be formated as a list of json objects, like this:
     {
-    "careers" : [{"title": "AI Researcher", "confidence": 0.9} ... ]
+    "careers" : [{"title": "AI Engineer", "confidence": 0.673} ... ]
     }
-    Confidence should sum up to 1.
     Provide only a JSON response without any markdown formatting or triple backticks.
     `;
 
@@ -55,6 +54,19 @@ async function getCareerPaths(file) {
   // const responseJSON = {
   //   "careers" : [{"career": "AI Researcher", "confidence": 0.9}, {"career": "Data Scientist", "confidence": 0.8}, {"career": "Software Engineer", "confidence": 0.7}, {"career": "Machine Learning Engineer", "confidence": 0.6},{"career": "Data Analyst", "confidence": 0.5}]
   //   } // for test
+
+  // Run a softmax on the output percentage
+  const exp = [];
+  const multiplier = Math.random() * 4 + 7;
+  for (let i = 0; i < responseJSON.careers.length; i++) {
+    exp.push(Math.exp(responseJSON.careers[i].confidence * multiplier));
+    //TODO: Should normalize the data instead of magic number
+  }
+  const expSum = exp.reduce((a, b) => a + b, 0);
+  for (let i = 0; i < responseJSON.careers.length; i++) {
+    responseJSON.careers[i].confidence = exp[i] / expSum;
+  }
+  //end softmax
 
   console.log(responseJSON);
   return responseJSON;
