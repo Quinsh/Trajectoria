@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Navbar, Nav } from 'react-bootstrap';
 import { ResumeUpload } from './components/ResumeUpload';
-import { CareerSuggestions } from './components/CareerSuggestions';
+import { CareerSuggestions } from './components/CareerSuggestions'
 import { ContactList } from './components/ContactList';
 
 function App() {
@@ -52,11 +52,19 @@ function App() {
       <Container className="main-content">
         <Row className="justify-content-center">
           <Col md={10} lg={8}>
-            <ResumeUpload onAnalysis={handleAnalysis} />
-            {analysisResult && (
+            {!analysisResult && <ResumeUpload onAnalysis={handleAnalysis} />}
+          </Col>
+        </Row>
+      </Container>
+
+      {/* Analysis Data */}
+      <Container className="main-content">
+        <Row className="justify-content-center">
+          <Col md={10} lg={12}>
+            {1 && (
               <div className="mt-4 analysis-results">
-                <CareerSuggestions analysis={analysisResult.analysis} />
-                <ContactList contacts={analysisResult.suggested_contacts} />
+                <CareerSuggestions analysis={analysisResult} />
+                <ContactList contacts={analysisResult} />
               </div>
             )}
           </Col>
