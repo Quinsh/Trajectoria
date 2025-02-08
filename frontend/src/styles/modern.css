@@ -70,6 +70,10 @@ padding: 0.25rem 0;
 color: white !important;
 }
 
+.border-dashed {
+  border-style: dashed !important;
+}
+
 /* Analysis Results */
 .analysis-results {
 background: rgba(255, 255, 255, 0.4);

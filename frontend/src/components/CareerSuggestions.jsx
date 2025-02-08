@@ -27,12 +27,12 @@ export const CareerSuggestions = ({ analysis }) => {
   //   return null; // Handle empty data
   // }
 
-  if(analysis) {
+  if (analysis) {
     analysis = analysis.careers
   } else {
     analysis = analysisData;
   }
-  
+
 
   const data = {
     labels: analysis.map(item => item.title),
@@ -95,10 +95,10 @@ export const CareerSuggestions = ({ analysis }) => {
 
   return (
     <div className="main-content flex flex-col items-center w-fit mx-auto">
-    <div style={{ width: '450px' }} className="w-fit mx-auto py-4">
-    <h2 className="text-center mb-4">Your most suggested career path is <i className="gradient-text">{analysis[0].title}</i></h2>
-    <Pie data={data} options={options} />
-</div>
-</div>
+      <div style={{ width: '450px' }} className="w-fit mx-auto py-4">
+        <h2 className="text-center mb-4">Your most suggested career path is <i className="gradient-text">{analysis[0].title}</i></h2>
+        <Pie data={data} options={options} />
+      </div>
+    </div>
   );
 };
