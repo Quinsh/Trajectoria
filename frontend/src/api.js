@@ -1,6 +1,8 @@
 const {OpenAI} = require('openai');
 
-const openai = new OpenAI(process.env.REACT_APP_OPENAI_API_KEY);
+const openai = new OpenAI({
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
+});
 
 const testPrompt = `
 650-334-8141 | zhuyiyun060209@gmail.com | LinkedIn | GitHub |
@@ -52,8 +54,27 @@ Languages(most to least proficient): Python, Java, C++, Javascript, HTML, CSS, S
 Technologies: Git, Pandas, SciPy, NumPy, scikit-learn, Tensorflow, GeoPandas, GPT-API, MongoDB, PostgreSQL,
 ReactJS, ExpressJs, Mapbox
 `
+const fs = require('fs');
+const pdf = require('pdf-parse');
 
-export async function analyzeResume(file) {
+// Function to extract words from PDF
+const extractWordsFromPdf = (pdfPath) => {
+  // Read the PDF file
+  const dataBuffer = fs.readFileSync(pdfPath);
+
+  // Parse the PDF content
+  pdf(dataBuffer).then((data) => {
+    // Extract all the text from the PDF
+    const text = data.text;
+    // Print all words
+    console.log(text);
+  }).catch((err) => {
+    console.error('Error extracting PDF content:', err);
+  });
+};
+
+//export
+async function analyzeResume(file) {
     // const formData = new FormData();
     // formData.append("file", file);
   
@@ -64,13 +85,18 @@ export async function analyzeResume(file) {
   
     // return response.json();
 
-    const prompt = "Take this resume and tell me in just one word what career path is suitable for me. Just output the position name I should target and nothing else. JSON format. Give top 5 options. " 
+    const prompt = "Take this resume and tell me in just one word what career path is suitable for me. Be as specific as possible. For example, AI researcher instead of researcher. Just output the position name I should target and nothing else. Comma separated. Give top 5 options. " 
 
     const response = await openai.chat.completions.create({
       model:"gpt-4o",
       messages: [{role:"user", content:testPrompt.concat(prompt)}]
     })
 
-    return response.data.choices[0].message.content.json();
+    const responseString = response.choices[0].message.content;
+    console.log(responseString);
+    console.log(responseString.split(","));
 
   }
+
+
+  analyzeResume(  extractWordsFromPdf("/Users/yiyunzhu/Files/resume/Orion.pdf"));
