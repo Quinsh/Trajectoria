@@ -13,10 +13,10 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       proxy: {
-        "/api": {
+        "/api_apollo": {
           target: "https://api.apollo.io", // The API you're calling
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ""), // Remove '/api' prefix from the request path
+          rewrite: (path) => path.replace(/^\/api_apollo/, ""), // Remove '/api' prefix from the request path
         },
       },
     },
