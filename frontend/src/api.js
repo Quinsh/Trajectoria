@@ -186,7 +186,7 @@ export async function analyzeResume(file) {
   
 
   careerPaths["contacts"] = contacts;
-  careerPaths["niches"] = niches;
+  careerPaths["niches"] = niches["niches"];
   console.log(careerPaths);
   return careerPaths;
 }
