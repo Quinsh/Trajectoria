@@ -68,7 +68,7 @@ async function getCareerPaths(file) {
   }
   //end softmax
 
-  console.log(responseJSON);
+  // console.log(responseJSON);
   return responseJSON;
 }
 
@@ -85,6 +85,7 @@ export async function analyzeResume(file) {
 
   // Loop through each career path and fetch data
   for (let careerPath of careerPaths.careers) {
+    //endpoint for finding people in the given career path.
     const url = `/api/v1/mixed_people/search?person_titles[]=${encodeURIComponent(
       careerPath.title
     )}&person_locations[]=United%20States&per_page=3`;
@@ -104,11 +105,21 @@ export async function analyzeResume(file) {
       const response = await fetch(url, options);
       const data = await response.json();
 
-      console.log(data.people);
+      // console.log(data.people);
 
       // Store all 3 people for each career path
       if (data.people && data.people.length > 0) {
         for (let i = 0; i < data.people.length; i++) {
+          const enrichURL = `/api/v1/people/match?first_name=${data.people[i].first_name}&last_name=${data.people[i].last_name}&linkedin_url=${data.people[i].linkedin_url}&reveal_personal_emails=true&reveal_phone_number=false`;
+
+          // fetch(enrichURL, options)
+          //   .then((res) => res.json())
+          //   .then((json) => console.log(json.person.email))
+          //   .catch((err) => console.error(err));
+
+          const individualResponse = await fetch(enrichURL, options);
+          const individualDate = await individualResponse.json();
+
           results.push({
             careerPath: careerPath.title,
             first_name: data.people[i].first_name,
@@ -118,6 +129,8 @@ export async function analyzeResume(file) {
             linkedin_url: data.people[i].linkedin_url,
             seniority: data.people[i].seniority,
             title: data.people[i].title,
+            email: individualDate.person.email,
+            photo_url: individualDate.person.photo_url,
           });
         }
       } else {
