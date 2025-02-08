@@ -1,5 +1,6 @@
 const {OpenAI} = require('openai');
 
+//git commit --amend --all
 const openai = new OpenAI({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
@@ -99,4 +100,4 @@ async function analyzeResume(file) {
   }
 
 
-  analyzeResume(  extractWordsFromPdf("/Users/yiyunzhu/Files/resume/Orion.pdf"));
+  analyzeResume(extractWordsFromPdf("/Users/yiyunzhu/Files/resume/Orion.pdf"));
