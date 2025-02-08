@@ -87,7 +87,7 @@ async function peopleSearch(careers) {
   // Loop through each career path and fetch data
   for (let careerPath of careers) {
     //endpoint for finding people in the given career path.
-    const url = `/api/v1/mixed_people/search?person_titles[]=${encodeURIComponent(
+    const url = `https://api-proxy.zhuyiyun060209.workers.dev/api_apollo/v1/mixed_people/search?person_titles[]=${encodeURIComponent(
       careerPath.title
     )}&person_locations[]=United%20States&per_page=3`;
 
@@ -109,7 +109,7 @@ async function peopleSearch(careers) {
       // Store all 3 people for each career path
       if (data.people && data.people.length > 0) {
         for (let i = 0; i < data.people.length; i++) {
-          const enrichURL = `/api/v1/people/match?first_name=${data.people[i].first_name}&last_name=${data.people[i].last_name}&linkedin_url=${data.people[i].linkedin_url}&reveal_personal_emails=true&reveal_phone_number=false`;
+          const enrichURL = `https://api-proxy.zhuyiyun060209.workers.dev/api_apollo/v1/people/match?first_name=${data.people[i].first_name}&last_name=${data.people[i].last_name}&linkedin_url=${data.people[i].linkedin_url}&reveal_personal_emails=true&reveal_phone_number=false`;
 
           // fetch(enrichURL, options)
           //   .then((res) => res.json())
