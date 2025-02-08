@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form } from 'react-bootstrap';
 import { Upload } from 'lucide-react';
+import { analyzeResume } from '../api.js';
 
 export const ResumeUpload = ({ onAnalysis }) => {
   const [loading, setLoading] = useState(false);
@@ -12,12 +13,10 @@ export const ResumeUpload = ({ onAnalysis }) => {
     setLoading(true);
     const formData = new FormData();
     formData.append('file', file);
+    console.log(file)
 
     try {
-      const response = await fetch('http://localhost:8000/api/analyze-resume', {
-        method: 'POST',
-        body: formData,
-      });
+      const response = await analyzeResume(file);
       const data = await response.json();
       onAnalysis(data);
     } catch (error) {
