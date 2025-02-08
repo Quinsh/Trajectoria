@@ -83,9 +83,9 @@ export async function analyzeResume(file) {
   const results = [];
 
   // Loop through each career path and fetch data
-  for (let careerPath of careerPaths) {
+  for (let careerPath of careerPaths.careers) {
     const url = `/api/v1/mixed_people/search?person_titles[]=${encodeURIComponent(
-      careerPath
+      careerPath.title
     )}&person_locations[]=United%20States&per_page=3`;
 
     const options = {
@@ -109,7 +109,7 @@ export async function analyzeResume(file) {
       if (data.people && data.people.length > 0) {
         for (let i = 0; i < data.people.length; i++) {
           results.push({
-            careerPath: careerPath,
+            careerPath: careerPath.title,
             first_name: data.people[i].first_name,
             last_name: data.people[i].last_name,
             city: data.people[i].city,
