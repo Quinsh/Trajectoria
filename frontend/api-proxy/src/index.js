@@ -11,20 +11,35 @@
 export default {
 	async fetch(request) {
 	  const url = new URL(request.url);
-	  
-	  // Check if the request is to "/api"
-	  if (url.pathname.startsWith("/api_apollo")) {
-		// Rewrite the URL to the actual API endpoint
-		const newUrl = "https://api.apollo.io" + url.pathname.replace(/^\/api_apollo/, "");
-		
-		// Forward the request to the actual API
-		return fetch(newUrl, {
-		  method: request.method,
-		  headers: request.headers,
-		  body: request.body,
+  
+	  // Handle CORS Preflight (OPTIONS request)
+	  if (request.method === "OPTIONS") {
+		return new Response(null, {
+		  status: 204, // No content
+		  headers: {
+			"Access-Control-Allow-Origin": "*",
+			"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+			"Access-Control-Allow-Headers": "*",
+		  },
 		});
 	  }
   
-	  return new Response("Not found", { status: 404 });
-	},
+	  // Rewrite the URL to the actual API endpoint
+	  const apiUrl = "https://api.apollo.io" + url.pathname.replace(/^\/api_apollo/, "");
+  
+	  // Forward the request to the actual API
+	  const response = await fetch(apiUrl, {
+		method: request.method,
+		headers: request.headers,
+		body: request.body,
+	  });
+  
+	  // Clone the response and add CORS headers
+	  const modifiedResponse = new Response(response.body, response);
+	  modifiedResponse.headers.set("Access-Control-Allow-Origin", "*");
+	  modifiedResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+	  modifiedResponse.headers.set("Access-Control-Allow-Headers", "*");
+  
+	  return modifiedResponse;
+	}
   };
