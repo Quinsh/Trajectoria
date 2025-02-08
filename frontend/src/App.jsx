@@ -13,9 +13,16 @@ function App() {
 
   return (
     <div className="app-wrapper">
+        <div className="background-animation">
+            <div className="blob"></div>
+            <div className="blob"></div>
+            <div className="blob"></div>
+            <div className="blob"></div>
+        </div>
+
       <Navbar expand="lg" className="custom-navbar">
         <Container>
-          <Navbar.Brand href="#home" className="brand-text">CareerAI</Navbar.Brand>
+          <Navbar.Brand href="#home" className="brand-text">TrajectorAI</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
@@ -60,7 +67,7 @@ function App() {
         <Container>
           <Row>
             <Col md={4}>
-              <h5>CareerAI</h5>
+              <h5>TrajectorAI</h5>
               <p>Empowering your career decisions with AI</p>
             </Col>
             <Col md={4}>
@@ -73,8 +80,8 @@ function App() {
             </Col>
             <Col md={4}>
               <h5>Contact</h5>
-              <p>info@careerai.com</p>
-              <p>1-800-CAREER-AI</p>
+              <p>closhuh@gmail.com</p>
+              <p>+1 (641) XXX XXXX</p>
             </Col>
           </Row>
         </Container>
