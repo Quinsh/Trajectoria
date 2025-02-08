@@ -94,11 +94,11 @@ export const CareerSuggestions = ({ analysis }) => {
   };
 
   return (
-    <div className="main-content flex flex-col items-center">
-    <div style={{ width: '400px', height: '400px' }} className="mx-auto">
-      <h2 className="text-center mb-4">Suggested Career Paths</h2>
-      <Pie data={data} options={options} />
-    </div>
-  </div>
+    <div className="main-content flex flex-col items-center w-fit mx-auto">
+    <div style={{ width: '450px' }} className="w-fit mx-auto py-4">
+    <h2 className="text-center mb-4">Your most suggested career path is <i className="gradient-text">{analysis[0].title}</i></h2>
+    <Pie data={data} options={options} />
+</div>
+</div>
   );
 };

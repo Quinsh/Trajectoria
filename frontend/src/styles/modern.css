@@ -78,6 +78,27 @@ padding: 2rem;
 box-shadow: 0 4px 6px rgba(99, 102, 241, 0.1);
 }
 
+
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    #ff6b6b 0%,
+    #ffb091 50%,
+    #ff6b6b 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
 body {
 background: #f8f9fa;
 min-height: 100vh;
