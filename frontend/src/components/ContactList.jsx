@@ -1,7 +1,10 @@
 import React from 'react';
 import { Card, ListGroup } from 'react-bootstrap';
 
-export const ContactList = ({ contacts }) => {
+export const ContactList = ({ analysis }) => {
+  const contacts = analysis?.contacts;
+  console.log(contacts)
+  console.log(analysis)
   if (!contacts?.length) return null;
 
   return (

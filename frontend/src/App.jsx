@@ -64,7 +64,7 @@ function App() {
             {1 && (
               <div className="mt-4 analysis-results">
                 <CareerSuggestions analysis={analysisResult} />
-                <ContactList contacts={analysisResult} />
+                <ContactList analysis={analysisResult} />
               </div>
             )}
           </Col>

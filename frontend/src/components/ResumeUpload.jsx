@@ -17,8 +17,7 @@ export const ResumeUpload = ({ onAnalysis }) => {
 
     try {
       const response = await analyzeResume(file);
-      const data = await response.json();
-      onAnalysis(data);
+      onAnalysis(response);
     } catch (error) {
       console.error('Error analyzing resume:', error);
     } finally {

@@ -16,10 +16,10 @@ const COLORS = [
 
 // for testing, erase later
 const analysisData = [
-  { jobTitle: "Software Engineer", percentage: 0.35 },
-  { jobTitle: "Data Scientist", percentage: 0.25 },
-  { jobTitle: "Product Manager", percentage: 0.20 },
-  { jobTitle: "UX Designer", percentage: 0.20 }
+  { title: "Software Engineer", confidence: 0.35 },
+  { title: "Data Scientist", confidence: 0.25 },
+  { title: "Product Manager", confidence: 0.20 },
+  { title: "UX Designer", confidence: 0.20 }
 ];
 
 export const CareerSuggestions = ({ analysis }) => {
@@ -27,12 +27,17 @@ export const CareerSuggestions = ({ analysis }) => {
   //   return null; // Handle empty data
   // }
 
-  analysis = analysisData;
+  if(analysis) {
+    analysis = analysis.careers
+  } else {
+    analysis = analysisData;
+  }
+  
 
   const data = {
-    labels: analysis.map(item => item.jobTitle),
+    labels: analysis.map(item => item.title),
     datasets: [{
-      data: analysis.map(item => item.percentage * 100),
+      data: analysis.map(item => item.confidence * 100),
       backgroundColor: analysis.map((_, index) => COLORS[index % COLORS.length]),
       borderColor: 'rgba(255, 255, 255, 0.3)',
       borderWidth: 2,
