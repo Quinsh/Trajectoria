@@ -26,24 +26,25 @@ export const ResumeUpload = ({ onAnalysis }) => {
   };
 
   return (
-    <Card className="text-center">
-      <Card.Body className="p-5">
-        <Form.Group controlId="resume-upload" className="mb-0">
-          <Form.Label className="w-100 cursor-pointer mb-0">
-            <Upload className="mb-3" size={48} />
-            <p className="mb-2">
-              {loading ? 'Analyzing...' : 'Drop your resume here or click to upload'}
-            </p>
-            <p className="text-muted small">Supported format: PDF</p>
-          </Form.Label>
-          <Form.Control
-            type="file"
-            className="d-none"
-            onChange={handleFileUpload}
-            accept=".pdf"
-          />
-        </Form.Group>
-      </Card.Body>
-    </Card>
+    <Card className="text-center border border-secondary border-2 border-dashed bg-transparent">
+  <Card.Body className="p-5">
+    <Form.Group controlId="resume-upload" className="mb-0">
+      <Form.Label className="w-100 cursor-pointer mb-0">
+        <Upload className="mb-3" size={48} />
+        <p className="mb-2">
+          {loading ? 'Analyzing...' : 'Drop your resume here or click to upload'}
+        </p>
+        <p className="text-muted small">Supported format: PDF</p>
+      </Form.Label>
+      <Form.Control
+        type="file"
+        className="d-none"
+        onChange={handleFileUpload}
+        accept=".pdf"
+      />
+    </Form.Group>
+  </Card.Body>
+</Card>
+
   );
 };

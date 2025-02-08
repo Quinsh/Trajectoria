@@ -13,12 +13,12 @@ function App() {
 
   return (
     <div className="app-wrapper">
-        <div className="background-animation">
-            <div className="blob"></div>
-            <div className="blob"></div>
-            <div className="blob"></div>
-            <div className="blob"></div>
-        </div>
+      <div className="background-animation">
+        <div className="blob"></div>
+        <div className="blob"></div>
+        <div className="blob"></div>
+        <div className="blob"></div>
+      </div>
 
       <Navbar expand="lg" className="custom-navbar">
         <Container>
@@ -28,8 +28,6 @@ function App() {
             <Nav className="ms-auto">
               <Nav.Link href="#home" className="nav-link-custom">Home</Nav.Link>
               <Nav.Link href="#about" className="nav-link-custom">About</Nav.Link>
-              <Nav.Link href="#blog" className="nav-link-custom">Blog</Nav.Link>
-              <Nav.Link href="#contact" className="nav-link-custom">Contact</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -40,7 +38,7 @@ function App() {
         <Container>
           <Row className="justify-content-center text-center">
             <Col md={10} lg={8}>
-              <h1 className="hero-title">Discover Your Perfect Career Path</h1>
+              <h1 className="hero-title">Discover Your Perfect Career Path and Mentor</h1>
               <p className="hero-subtitle">
                 Upload your resume and let AI guide you to your ideal career opportunities
               </p>
@@ -61,7 +59,7 @@ function App() {
       <Container className="main-content">
         <Row className="justify-content-center">
           <Col md={10} lg={12}>
-            {1 && (
+            {analysisResult && (
               <div className="mt-4 analysis-results">
                 <CareerSuggestions analysis={analysisResult} />
                 <ContactList analysis={analysisResult} />
@@ -79,17 +77,23 @@ function App() {
               <p>Empowering your career decisions with AI</p>
             </Col>
             <Col md={4}>
-              <h5>Quick Links</h5>
+              <h5>About Us</h5>
               <Nav className="flex-column">
-                <Nav.Link href="#about">About</Nav.Link>
-                <Nav.Link href="#blog">Blog</Nav.Link>
-                <Nav.Link href="#contact">Contact</Nav.Link>
+                <p>
+                  CS Freshman & Sophomores in Grinnell College.
+                </p>
+                <p>
+                  Project submitted to 2025 TartanHacks (CMU Hacks).
+                </p>
               </Nav>
             </Col>
             <Col md={4}>
               <h5>Contact</h5>
-              <p>closhuh@gmail.com</p>
-              <p>+1 (641) XXX XXXX</p>
+              <p>
+                Gun Woo Kim (Frontend) closhuh@gmail.com <br />
+                Harrizon Zhu (Backend) zhuyiyun060209@gmail.com <br />
+                Adarsh Sharma (Backend) adarsharma.me@gmail.com
+              </p>
             </Col>
           </Row>
         </Container>
